@@ -25,5 +25,5 @@ public class Book {
     private String author;
 
     @Column(name = "publicationYear")
-    private int publicationYear;
+    private Long publicationYear;
 }
