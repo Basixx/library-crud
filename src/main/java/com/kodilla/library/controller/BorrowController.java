@@ -1,25 +1,35 @@
 package com.kodilla.library.controller;
 
+import com.kodilla.library.domain.reader.Borrow;
 import com.kodilla.library.domain.reader.BorrowDto;
+import com.kodilla.library.mapper.BorrowMapper;
+import com.kodilla.library.service.DbService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/library/borrow")
+@RequestMapping("/v1/library")
+@RequiredArgsConstructor
 public class BorrowController {
+    private final DbService service;
+    private final BorrowMapper borrowMapper;
+
     @GetMapping(value = "getBorrows")
     public List<BorrowDto> getBorrows(){
-        return new ArrayList<>();
+        List<Borrow> borrows = service.getAllBorrows();
+        return borrowMapper.mapToBorrowDtoList(borrows);
     }
 
     @GetMapping(value = "getBorrow")
     public BorrowDto getBorow(Long borrowId){
         return new BorrowDto(1L,1L, 1L,
-                LocalDate.of(2021, 9,23),
-                LocalDate.of(2021, 10, 12));
+                SimpleDateFormat.getDateInstance(),
+                SimpleDateFormat.getDateInstance());
     }
 
     @DeleteMapping(value = "deleteBorrow")
@@ -30,8 +40,8 @@ public class BorrowController {
     @PutMapping(value = "updateBorrow")
     public BorrowDto updateBorrow (BorrowDto borrowDto){
         return new BorrowDto(1L, 1L, 2L,
-                LocalDate.of(2021, 10, 14),
-                LocalDate.of(2021, 11, 12));
+                SimpleDateFormat.getDateInstance(),
+                SimpleDateFormat.getDateInstance());
     }
 
     @PostMapping(value = "createBorrow")

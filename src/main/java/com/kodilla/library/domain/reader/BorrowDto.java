@@ -3,7 +3,8 @@ package com.kodilla.library.domain.reader;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.time.LocalDate;
+import java.text.DateFormat;
+
 
 @Getter
 @AllArgsConstructor
@@ -11,6 +12,6 @@ public class BorrowDto {
     private Long id;
     private Long copyId;
     private Long readerId;
-    private LocalDate borrowDate;
-    private LocalDate returnDate;
+    private DateFormat borrowDate;
+    private DateFormat returnDate;
 }
