@@ -4,27 +4,28 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-/*import javax.persistence.Column;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.Id;*/
-import java.time.LocalDate;
+import javax.persistence.Id;
+import java.text.DateFormat;
 
+@NoArgsConstructor
 @Getter
 @AllArgsConstructor
-// @Entity(name = "Reader")
+@Entity(name = "reader")
 public class Reader {
-      //  @Id
-      //  @GeneratedValue
+        @Id
+        @GeneratedValue
         private Long id;
 
-      //  @Column(name = "firstname")
+        @Column(name = "firstname")
         private String firstname;
 
-     //   @Column(name = "lastname")
+        @Column(name = "lastname")
         private String lastname;
 
-     //   @Column(name = "Account creation date")
-        private LocalDate accountCreationDate;
+        @Column(name = "accountCreationDate")
+        private DateFormat accountCreationDate;
 }
 

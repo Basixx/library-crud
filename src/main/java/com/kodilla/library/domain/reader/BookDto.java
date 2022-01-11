@@ -9,5 +9,5 @@ public class BookDto {
     private Long id;
     private String title;
     private String author;
-    private Long publicationYear;
+    private Integer publicationYear;
 }

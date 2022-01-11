@@ -5,10 +5,8 @@ import com.kodilla.library.domain.reader.BookDto;
 import com.kodilla.library.mapper.BookMapper;
 import com.kodilla.library.service.DbService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -28,7 +26,7 @@ public class BookController {
 
     @GetMapping(name = "getBook")
     public BookDto getBook(Long bookId){
-        return new BookDto(1L, "Book1", "Author1", 2003L);
+        return new BookDto(1L, "Book1", "Author1", 2003);
     }
 
     @DeleteMapping(value = "deleteBook")
@@ -38,7 +36,7 @@ public class BookController {
 
     @PutMapping(value = "updateBook")
     public BookDto updateBook (BookDto bookDto){
-        return new BookDto(1L, "Book1 edited", "Author edited", 2004L);
+        return new BookDto(1L, "Book1 edited", "Author edited", 2004);
     }
 
     @PostMapping(value = "createBook")
