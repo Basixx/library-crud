@@ -1,9 +1,11 @@
-package com.kodilla.library.domain.reader;
+package com.kodilla.library.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor
 @AllArgsConstructor
 public class BookDto {
     private Long id;

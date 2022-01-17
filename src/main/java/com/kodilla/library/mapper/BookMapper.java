@@ -1,7 +1,7 @@
 package com.kodilla.library.mapper;
 
-import com.kodilla.library.domain.reader.Book;
-import com.kodilla.library.domain.reader.BookDto;
+import com.kodilla.library.domain.Book;
+import com.kodilla.library.domain.BookDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +12,6 @@ public class BookMapper {
 
     public Book mapToBook(final BookDto bookDto){
         return new Book(
-                bookDto.getId(),
                 bookDto.getTitle(),
                 bookDto.getAuthor(),
                 bookDto.getPublicationYear()

@@ -1,9 +1,8 @@
 package com.kodilla.library.mapper;
 
-import com.kodilla.library.domain.reader.Copy;
-import com.kodilla.library.domain.reader.CopyDto;
+import com.kodilla.library.domain.Copy;
+import com.kodilla.library.domain.CopyDto;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,16 +11,14 @@ public class CopyMapper {
 
     public Copy mapToCopy(final CopyDto copyDto){
         return new Copy(
-                copyDto.getId(),
-                copyDto.getTitleId(),
+                copyDto.getBook(),
                 copyDto.getState()
         );
     }
 
     public CopyDto mapToCopyDto(final Copy copy){
         return new CopyDto(
-                copy.getId(),
-                copy.getTitleId(),
+                copy.getBook(),
                 copy.getState()
         );
     }

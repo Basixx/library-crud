@@ -1,9 +1,8 @@
 package com.kodilla.library.mapper;
 
-import com.kodilla.library.domain.reader.Borrow;
-import com.kodilla.library.domain.reader.BorrowDto;
+import com.kodilla.library.domain.Borrow;
+import com.kodilla.library.domain.BorrowDto;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,20 +12,21 @@ public class BorrowMapper {
     public Borrow mapToBorrow(final BorrowDto borrowDto){
         return new Borrow(
                 borrowDto.getId(),
-                borrowDto.getCopyId(),
-                borrowDto.getReaderId(),
+                borrowDto.getReader(),
                 borrowDto.getBorrowDate(),
-                borrowDto.getReturnDate()
+                borrowDto.getReturnDate(),
+                borrowDto.getCopy()
         );
     }
 
     public BorrowDto mapToBorrowDto(final Borrow borrow){
+
         return new BorrowDto(
                 borrow.getId(),
-                borrow.getCopyId(),
-                borrow.getReaderId(),
+                borrow.getReader(),
                 borrow.getBorrowDate(),
-                borrow.getReturnDate()
+                borrow.getReturnDate(),
+                borrow.getCopy()
         );
     }
 

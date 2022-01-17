@@ -1,7 +1,7 @@
 package com.kodilla.library.mapper;
 
-import com.kodilla.library.domain.reader.Reader;
-import com.kodilla.library.domain.reader.ReaderDto;
+import com.kodilla.library.domain.Reader;
+import com.kodilla.library.domain.ReaderDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,19 +12,15 @@ public class ReaderMapper {
 
     public Reader mapToReader(final ReaderDto readerDto){
         return new Reader(
-                readerDto.getId(),
                 readerDto.getFirstname(),
-                readerDto.getLastname(),
-                readerDto.getAccountCreationDate()
+                readerDto.getLastname()
         );
     }
 
     public ReaderDto mapToReaderDto(final Reader reader){
         return new ReaderDto(
-                reader.getId(),
                 reader.getFirstname(),
-                reader.getLastname(),
-                reader.getAccountCreationDate()
+                reader.getLastname()
         );
     }
 

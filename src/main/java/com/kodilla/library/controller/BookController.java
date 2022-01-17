@@ -1,10 +1,12 @@
 package com.kodilla.library.controller;
 
-import com.kodilla.library.domain.reader.Book;
-import com.kodilla.library.domain.reader.BookDto;
+import com.kodilla.library.controller.exception.BookNotFoundException;
+import com.kodilla.library.domain.Book;
+import com.kodilla.library.domain.BookDto;
 import com.kodilla.library.mapper.BookMapper;
-import com.kodilla.library.service.DbService;
+import com.kodilla.library.service.DbServiceBook;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BookController {
 
-    private final DbService service;
+    private final DbServiceBook service;
     private final BookMapper bookMapper;
 
 
@@ -25,22 +27,27 @@ public class BookController {
     }
 
     @GetMapping(name = "getBook")
-    public BookDto getBook(Long bookId){
-        return new BookDto(1L, "Book1", "Author1", 2003);
+    public BookDto getBook(@RequestParam Long bookId) throws BookNotFoundException {
+        return bookMapper.mapToBookDto(
+                service.getBook(bookId).orElseThrow(BookNotFoundException::new)
+        );
     }
 
     @DeleteMapping(value = "deleteBook")
-    public void deleteBook(Long bookId){
-
+    public void deleteBook(@RequestParam Long bookId) throws BookNotFoundException{
+        service.deleteBook(bookId);
     }
 
     @PutMapping(value = "updateBook")
-    public BookDto updateBook (BookDto bookDto){
-        return new BookDto(1L, "Book1 edited", "Author edited", 2004);
+    public BookDto updateBook (@RequestBody BookDto bookDto){
+        Book book = bookMapper.mapToBook(bookDto);
+        Book savedBook = service.saveBook(book);
+        return bookMapper.mapToBookDto(savedBook);
     }
 
-    @PostMapping(value = "createBook")
-    public void createReader(BookDto bookDto){
-
+    @PostMapping(value = "createBook", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void createReader(@RequestBody BookDto bookDto){
+        Book book = bookMapper.mapToBook(bookDto);
+        service.saveBook(book);
     }
 }
